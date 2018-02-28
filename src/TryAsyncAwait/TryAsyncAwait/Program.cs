@@ -43,6 +43,9 @@ namespace TryAsyncAwait
 
     static async Task<int> DoSomeWorkAsync()
     {
+      // Demo exceptions
+      // throw new InvalidOperationException("Hell");
+
       Console.WriteLine($"DoSomeWorkAsync before await - Thread {Thread.CurrentThread.ManagedThreadId}");
       var result = await Task.FromResult<int>(42);
       Console.WriteLine($"DoSomeWorkAsync after await - Thread {Thread.CurrentThread.ManagedThreadId}");
