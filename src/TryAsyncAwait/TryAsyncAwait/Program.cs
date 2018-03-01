@@ -1,57 +1,75 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace TryAsyncAwait
 {
-  class Program
-  {
-    static void Main(string[] args)
+    class Program
     {
-      Console.WriteLine($"Main - Thread {Thread.CurrentThread.ManagedThreadId}");
+        static void Main(string[] args)
+        {
+            PrintThread(nameof(Main), "start");
 
-      var contentLength = GetContentLengthAsync(10).Result;
-      Console.WriteLine($"Content length is {contentLength}");
+            var contentLength = GetTextOccurrencesAsync("google.com", "http://google.com", 10).Result;
+            Console.WriteLine($"Occurances count is {contentLength}");
 
-      Console.WriteLine($"Main End- Thread {Thread.CurrentThread.ManagedThreadId}");
+            PrintThread(nameof(Main), "finish");
+        }
+
+        static async Task<int> GetTextOccurrencesAsync(string text, string url, int someParameter)
+        {
+            var client = new HttpClient();
+            Task<string> contentTask = client.GetStringAsync(url);
+            PrintThread(nameof(GetTextOccurrencesAsync), "start");
+
+            DoSomeWork(); // Sync execution
+
+            var count = await CalculateTagsCountAsync(text, await contentTask);
+
+            PrintThread(nameof(GetTextOccurrencesAsync), "after first await");
+            
+            var calculationsResult = someParameter * await DoSomeWorkAsync(); // Uses variable from stack
+            Console.WriteLine($"Calculated value is {calculationsResult}");
+
+            PrintThread(nameof(GetTextOccurrencesAsync), "after second await");
+
+            return count;
+        }
+
+        static void DoSomeWork()
+        {
+            Console.WriteLine("doing some synchronous work.");
+            PrintThread(nameof(DoSomeWork), "_");
+        }
+
+        static async Task<int> DoSomeWorkAsync()
+        {
+            // Demo exceptions
+            // throw new InvalidOperationException("Hell");
+
+            PrintThread(nameof(DoSomeWorkAsync), "before await");
+            var result = await Task.FromResult<int>(42);
+
+            await Task.Delay(1000);
+
+            PrintThread(nameof(DoSomeWorkAsync), "after await");
+
+            return result;
+        }
+
+        // Async?
+        static async Task<int> CalculateTagsCountAsync(string subString, string content)
+        {
+            // ??
+            return await Task.FromResult<int>(new Regex(subString).Matches(content).Count);
+        }
+
+        static void PrintThread(string method, string details)
+        {
+            Console.WriteLine($"[{Thread.CurrentThread.ManagedThreadId}] --- {method} - {details}");
+        }
+
     }
-
-    static async Task<int> GetContentLengthAsync(int param123)
-    {
-      var client = new HttpClient();
-      Task<string> contentTask = client.GetStringAsync("http://google.com");
-      Console.WriteLine($"GetContentLengthAsync - Thread {Thread.CurrentThread.ManagedThreadId}");
-
-      DoSomeWork();
-
-      var content = await contentTask;
-
-      Console.WriteLine($"GetContentLengthAsync after first await - Thread {Thread.CurrentThread.ManagedThreadId}");
-      // Uses variable from stack
-      var delta = param123 + await DoSomeWorkAsync();
-
-      Console.WriteLine($"GetContentLengthAsync after second await - Thread {Thread.CurrentThread.ManagedThreadId}");
-      return content.Length + delta;
-    }
-
-    static void DoSomeWork()
-    {
-      Console.WriteLine("doing some work.");
-      Console.WriteLine($"DoSomeWork - Thread {Thread.CurrentThread.ManagedThreadId}");
-    }
-
-    static async Task<int> DoSomeWorkAsync()
-    {
-      // Demo exceptions
-      // throw new InvalidOperationException("Hell");
-
-      Console.WriteLine($"DoSomeWorkAsync before await - Thread {Thread.CurrentThread.ManagedThreadId}");
-      var result = await Task.FromResult<int>(42);
-      Console.WriteLine($"DoSomeWorkAsync after await - Thread {Thread.CurrentThread.ManagedThreadId}");
-      //await Task.Delay(1000);
-      return result;
-    }
-
-  }
 }

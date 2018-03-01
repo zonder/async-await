@@ -7,3 +7,14 @@ D:\Development\Github\async-await\src\TryAsyncAwait\TryAsyncAwait\obj\Debug\netc
 D:\Development\Github\async-await\src\TryAsyncAwait\TryAsyncAwait\obj\Debug\netcoreapp1.1\TryAsyncAwait.AssemblyInfo.cs
 D:\Development\Github\async-await\src\TryAsyncAwait\TryAsyncAwait\obj\Debug\netcoreapp1.1\TryAsyncAwait.dll
 D:\Development\Github\async-await\src\TryAsyncAwait\TryAsyncAwait\obj\Debug\netcoreapp1.1\TryAsyncAwait.pdb
+C:\Development\Prototypes\Async\async-await\async-await\src\TryAsyncAwait\TryAsyncAwait\bin\Debug\netcoreapp1.1\TryAsyncAwait.deps.json
+C:\Development\Prototypes\Async\async-await\async-await\src\TryAsyncAwait\TryAsyncAwait\bin\Debug\netcoreapp1.1\TryAsyncAwait.runtimeconfig.json
+C:\Development\Prototypes\Async\async-await\async-await\src\TryAsyncAwait\TryAsyncAwait\bin\Debug\netcoreapp1.1\TryAsyncAwait.runtimeconfig.dev.json
+C:\Development\Prototypes\Async\async-await\async-await\src\TryAsyncAwait\TryAsyncAwait\bin\Debug\netcoreapp1.1\TryAsyncAwait.dll
+C:\Development\Prototypes\Async\async-await\async-await\src\TryAsyncAwait\TryAsyncAwait\bin\Debug\netcoreapp1.1\TryAsyncAwait.pdb
+C:\Development\Prototypes\Async\async-await\async-await\src\TryAsyncAwait\TryAsyncAwait\obj\Debug\netcoreapp1.1\TryAsyncAwait.csprojResolveAssemblyReference.cache
+C:\Development\Prototypes\Async\async-await\async-await\src\TryAsyncAwait\TryAsyncAwait\obj\Debug\netcoreapp1.1\TryAsyncAwait.csproj.CoreCompileInputs.cache
+C:\Development\Prototypes\Async\async-await\async-await\src\TryAsyncAwait\TryAsyncAwait\obj\Debug\netcoreapp1.1\TryAsyncAwait.AssemblyInfoInputs.cache
+C:\Development\Prototypes\Async\async-await\async-await\src\TryAsyncAwait\TryAsyncAwait\obj\Debug\netcoreapp1.1\TryAsyncAwait.AssemblyInfo.cs
+C:\Development\Prototypes\Async\async-await\async-await\src\TryAsyncAwait\TryAsyncAwait\obj\Debug\netcoreapp1.1\TryAsyncAwait.dll
+C:\Development\Prototypes\Async\async-await\async-await\src\TryAsyncAwait\TryAsyncAwait\obj\Debug\netcoreapp1.1\TryAsyncAwait.pdb
